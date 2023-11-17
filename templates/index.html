@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="og:title" content="Sweeter - The sweetest site" />
+    <meta name="og:description" content="Are you looking for something sweet?" />
+    <meta name="og:image" content="{{url_for('static', filename='img/og_image.jpg')}}" />
+    <title>Sweeter | The Sweetest</title>
+    <link rel="icon" href="{{url_for('static', filename='img/favico.ico')}}" type="image/x-icon">
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+    <!-- Font Awesome CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mystyle.css')}}">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="{{url_for('static', filename='js/myscript.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            get_posts();
+        })
+    </script>
+</head>
+
+<body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top is-white" role="navigation" aria-label="main-navigation">
+        <div class="navbar-brand">
+            <a href="/" class="navbar-item">
+                <img src="{{url_for('static', filename='img/logo.png')}}" alt="Logo.png" />
+                <strong class="is-sparta logo-text">Sweeter</strong>
+            </a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <article class="media">
+            <figure class="media-left" style="align-self: center;">
+                <a href="/user/{{user_info.username}}" class="image is-32x32">
+                    <img src="{{url_for('static', filename=user_info.profile_pic_real)}}" alt="User.png"
+                        class="is-rounded">
+                </a>
+            </figure>
+            <div class="media-content">
+                <div class="field">
+                    <p class="control">
+                        <input id="input-post" class="input is-rounded" placeholder="What are you thinking about?"
+                            onclick="$('#modal-post').addClass('is-active')" />
+
+                    <div class="modal" id="modal-post">
+                        <div class="modal-background" onclick="$('#modal-post').removeClass('is-active')">
+                        </div>
+                        <div class="modal-content">
+                            <div class="box">
+                                <article class="media">
+                                    <div class="media-content">
+                                        <div class="field">
+                                            <p class="control">
+                                                <textarea id="textarea-post" class="textarea"
+                                                    placeholder="What are you thonking about?"></textarea>
+                                            </p>
+                                        </div>
+                                        <nav class="level is-mobile">
+                                            <div class="level-left"></div>
+                                            <div class="level-right">
+                                                <div class="level-item">
+                                                    <a onclick="$('#modal-post').removeClass('is-active')"
+                                                        class="button is-sparta is-outlined">
+                                                        Cancel
+                                                    </a>
+                                                </div>
+                                                <div class="level-item">
+                                                    <a onclick="post()" class="button is-sparta">
+                                                        Create Post
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <button class="modal-close is-large" aria-label="close"
+                            onclick="$('#modal-post').removeClass('is-active')"></button>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <section class="section">
+        <div class="container" id="post-box">
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <a href="#" class="image is-64x64">
+                            <img src="{{url_for('static', filename='img/user-profile.png')}}" alt="image.png"
+                                class="is-rounded">
+                        </a>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <strong>User-A</strong><small>@user-a</small>
+                                <small>10 minutes ago</small>
+                                <br />
+                                Comments Section
+                            </p>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-left">
+                                <a aria-label="heart" onclick="toggle_like('', 'heart')" class="level-item is-sparta">
+                                    <span class="icon is-small">
+                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </span>
+                                    &nbsp;<span>2.7k</span>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

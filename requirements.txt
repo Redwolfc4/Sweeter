@@ -1,0 +1,17 @@
+blinker
+cffi6
+click
+colorama
+cryptography
+DateTime
+dnspython
+Flask
+itsdangerous
+Jinja2
+jwt
+MarkupSafe
+pycparser
+PyJWT
+pymongo
+Werkzeug
+zope.interface1
