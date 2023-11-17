@@ -1,5 +1,5 @@
 blinker
-cffi6
+cffi
 click
 colorama
 cryptography
@@ -13,5 +13,7 @@ MarkupSafe
 pycparser
 PyJWT
 pymongo
+python-dotenv
+pytz
 Werkzeug
-zope.interface1
+zope.interface

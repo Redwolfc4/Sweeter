@@ -1,10 +1,18 @@
 # library
+import os
+from os import environ
+from os.path import join, dirname
+from dotenv import load_dotenv
 from pymongo import MongoClient
 import jwt
 from datetime import datetime, timedelta
 import hashlib
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 
 # buat flask
 app = Flask(__name__)
@@ -13,13 +21,13 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 # upload folder akan static profile_pics
 app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
-SECRET_KEY = 'SPARTA'  # kunci rahasia
+SECRET_KEY = environ.get('SECRET_KEY')  # kunci rahasia
 
-MONGODB_CONNECTION_STRING = 'mongodb+srv://admin:admin@cluster0.hq5csff.mongodb.net/?retryWrites=true&w=majority'
+MONGODB_CONNECTION_STRING = environ.get('MONGODB_URL')
 client = MongoClient(MONGODB_CONNECTION_STRING)
 db = client.dbsparta_plus_week4  # buat database baru
 
-TOKEN_KEY = 'mytoken'
+TOKEN_KEY = environ.get('TOKEN_KEY')
 
 
 @app.route("/", methods=['GET'])
